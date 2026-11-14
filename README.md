@@ -1,8 +1,8 @@
 # NYC Taxi Advanced Analytics in Microsoft Fabric
 
-An end-to-end analytics portfolio project built with Microsoft Fabric Warehouse, Power BI, SQL, DAX, TMDL, Direct Lake on SQL, and GitHub integration.
+An end-to-end analytics portfolio project built with Microsoft Fabric Warehouse, Power BI, Excel, SQL, DAX, TMDL, Direct Lake on SQL, and GitHub integration.
 
-The solution transforms the Wide World Importers taxi sample into a validated analytical model with financial reconciliation controls, operational KPIs, weather analysis, geographic analysis, and six interactive report pages.
+The solution transforms the Wide World Importers taxi sample into a validated analytical model with financial reconciliation controls, operational KPIs, weather analysis, geographic analysis, six interactive Power BI report pages, and live Excel analysis.
 
 ![Executive Overview](images/01-nyc-taxi-executive-overview.png)
 
@@ -13,6 +13,7 @@ The solution transforms the Wide World Importers taxi sample into a validated an
 - Develop advanced DAX measures for finance, operations, time intelligence, weather, ranking, and data quality.
 - Reconcile recorded and calculated trip revenue without overwriting source data.
 - Deliver a multi-page Power BI report designed for executive and analytical use.
+- Connect Excel directly to the Power BI semantic model for refreshable PivotTable analysis and result validation.
 - Version the Fabric workspace through native GitHub integration.
 - Provide reproducible SQL validation and portfolio-ready documentation.
 
@@ -38,6 +39,10 @@ Power BI report
 NYC Taxi Advanced Analytics
               |
               v
+Excel live analysis
+Refreshable PivotTables and validation
+              |
+              v
 GitHub integration and version control
 ```
 
@@ -53,6 +58,8 @@ GitHub integration and version control
 | Business logic | DAX |
 | Model metadata | TMDL |
 | Reporting | Power BI |
+| Connected analysis | Excel with a live Power BI semantic-model connection |
+| Validation | Excel PivotTables, SQL control totals, and DAX queries |
 | Source control | GitHub and Fabric Git integration |
 | Documentation | Markdown and PNG evidence |
 
@@ -158,6 +165,25 @@ Daily, county, and payment-type detail with interactive month, county, and payme
 
 ![Detailed Analysis](images/06-nyc-taxi-detailed-analysis.png)
 
+## Excel integration and validation
+
+Excel connects live to the `NYC Taxi Analytics` semantic model and reuses the governed DAX measures defined in Power BI. The workbook provides a refreshable PivotTable for independent exploration and validation without exporting or duplicating the underlying dataset.
+
+The Excel analysis uses:
+
+- rows: `Date`, `County`, and `PaymentType`,
+- values: `Total_Trips`, `Recorded_Revenue`, `Average_Trip_Amount`, `Average_Distance_Miles`, and `Average_Duration_Minutes`,
+- a live connection to the Power BI semantic model,
+- refreshable calculations governed by the same DAX logic used in the report.
+
+This completes the intended analytical flow:
+
+```text
+Fabric Warehouse → Semantic Model → Power BI → Excel → GitHub
+```
+
+![Excel Integration - Live Analysis](images/09-nyc-taxi-excel-live-analysis.png)
+
 ## Validated results
 
 | Metric | Validated value |
@@ -217,7 +243,8 @@ The validation identified 4,070 exceptions with differences limited to `-2`, `-1
 │   ├── 05-nyc-taxi-geographic-analysis.png
 │   ├── 06-nyc-taxi-detailed-analysis.png
 │   ├── 07-nyc-taxi-semantic-model.png
-│   └── 08-nyc-taxi-fabric-warehouse.png
+│   ├── 08-nyc-taxi-fabric-warehouse.png
+│   └── 09-nyc-taxi-excel-live-analysis.png
 ├── sql/
 │   ├── 01_create_vw_TripAnalytics.sql
 │   └── 02_validate_solution.sql
@@ -233,6 +260,8 @@ The validation identified 4,070 exceptions with differences limited to `-2`, `-1
 - Fabric workspace administrator access for Git integration
 - GitHub repository access
 - Fine-grained GitHub token with `Contents: Read and write`
+- Excel with access to Power BI semantic models
+- Build permission on the `NYC Taxi Analytics` semantic model or Contributor access to its workspace
 
 ### Deployment
 
@@ -242,6 +271,8 @@ The validation identified 4,070 exceptions with differences limited to `-2`, `-1
 4. Synchronize the warehouse, semantic model, and report.
 5. Run `sql/02_validate_solution.sql`.
 6. Confirm that `Final_SQL_Validation_Status` returns `PASS`.
+7. In Excel, use `Insert → PivotTable → From Power BI` and select `NYC Taxi Analytics`.
+8. Recreate the validation PivotTable and refresh the live connection to confirm the model results.
 
 ## Git integration
 
@@ -251,7 +282,7 @@ The repository is connected directly to the Microsoft Fabric workspace. Fabric v
 - Semantic model
 - Power BI report
 
-Documentation, screenshots, validation notes, and standalone SQL scripts are maintained alongside the Fabric-generated project definitions.
+Documentation, Power BI and Excel screenshots, validation notes, and standalone SQL scripts are maintained alongside the Fabric-generated project definitions.
 
 ## Key engineering decisions
 
@@ -261,11 +292,12 @@ Documentation, screenshots, validation notes, and standalone SQL scripts are mai
 - Pickup relationships are active.
 - Drop-off relationships are inactive and activated only in dedicated DAX measures.
 - Calendar labels are sorted through technical date and ordinal columns.
+- Excel reuses governed semantic-model measures instead of duplicating business logic.
 - Uniform synthetic distributions are not presented as meaningful rankings.
 
 ## Skills demonstrated
 
-Microsoft Fabric, Fabric Warehouse, Power BI, Direct Lake on SQL, T-SQL, DAX, TMDL, star-schema modelling, inactive relationships, time intelligence, financial reconciliation, data-quality controls, report design, GitHub integration, validation, and technical documentation.
+Microsoft Fabric, Fabric Warehouse, Power BI, Excel live connections, PivotTables, Direct Lake on SQL, T-SQL, DAX, TMDL, star-schema modelling, inactive relationships, time intelligence, financial reconciliation, data-quality controls, report design, GitHub integration, validation, and technical documentation.
 
 ## Limitations
 
@@ -273,6 +305,7 @@ Microsoft Fabric, Fabric Warehouse, Power BI, Direct Lake on SQL, T-SQL, DAX, TM
 - Several count distributions are intentionally uniform.
 - The analytical fact source is a SQL view, which can cause DirectQuery fallback for some report queries.
 - Year-over-year measures require prior-year data to return meaningful comparisons; the current active dataset covers 2024.
+- Excel validation requires access to the Power BI semantic model and permission to build content from it.
 
 ## License
 
