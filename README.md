@@ -182,7 +182,7 @@ This completes the intended analytical flow:
 Fabric Warehouse → Semantic Model → Power BI → Excel → GitHub
 ```
 
-![Excel Integration - Live Analysis](images/09-nyc-taxi-excel-live-analysis.png)
+![Excel Integration - Live Analysis](images/09-nyc-taxi-excel-live-analysis.png.png)
 
 ## Validated results
 
@@ -244,7 +244,7 @@ The validation identified 4,070 exceptions with differences limited to `-2`, `-1
 │   ├── 06-nyc-taxi-detailed-analysis.png
 │   ├── 07-nyc-taxi-semantic-model.png
 │   ├── 08-nyc-taxi-fabric-warehouse.png
-│   └── 09-nyc-taxi-excel-live-analysis.png
+│   └── 09-nyc-taxi-excel-live-analysis.png.png
 ├── sql/
 │   ├── 01_create_vw_TripAnalytics.sql
 │   └── 02_validate_solution.sql
