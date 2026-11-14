@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Warehouse",
+    "displayName": "WWIAnalyticsWarehouse",
+    "description": ""
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "5f0f1b4c-03b1-add6-463a-4c792af63eaf"
+  }
+}

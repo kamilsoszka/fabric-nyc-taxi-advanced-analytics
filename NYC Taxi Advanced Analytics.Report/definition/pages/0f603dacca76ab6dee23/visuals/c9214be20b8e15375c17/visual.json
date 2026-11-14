@@ -1,0 +1,188 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
+  "name": "c9214be20b8e15375c17",
+  "position": {
+    "x": 20,
+    "y": 110,
+    "z": 0,
+    "height": 590,
+    "width": 1240,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Date"
+                    }
+                  },
+                  "Property": "Date"
+                }
+              },
+              "queryRef": "Date.Date",
+              "nativeQueryRef": "Date",
+              "format": "MM/dd/yyyy"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geography"
+                    }
+                  },
+                  "Property": "County"
+                }
+              },
+              "queryRef": "Geography.County",
+              "nativeQueryRef": "County"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "vw_TripAnalytics"
+                    }
+                  },
+                  "Property": "PaymentType"
+                }
+              },
+              "queryRef": "vw_TripAnalytics.PaymentType",
+              "nativeQueryRef": "PaymentType"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Total_Trips"
+                }
+              },
+              "queryRef": "_Measures.Total_Trips",
+              "nativeQueryRef": "Total_Trips"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Recorded_Revenue"
+                }
+              },
+              "queryRef": "_Measures.Recorded_Revenue",
+              "nativeQueryRef": "Recorded_Revenue"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Average_Trip_Amount"
+                }
+              },
+              "queryRef": "_Measures.Average_Trip_Amount",
+              "nativeQueryRef": "Average_Trip_Amount"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Average_Distance_Miles"
+                }
+              },
+              "queryRef": "_Measures.Average_Distance_Miles",
+              "nativeQueryRef": "Average_Distance_Miles"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Average_Duration_Minutes"
+                }
+              },
+              "queryRef": "_Measures.Average_Duration_Minutes",
+              "nativeQueryRef": "Average_Duration_Minutes"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "197.81049590599582D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Geography.County"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "175.98097377959434D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "vw_TripAnalytics.PaymentType"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "113.91577106911068D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Date.Date"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

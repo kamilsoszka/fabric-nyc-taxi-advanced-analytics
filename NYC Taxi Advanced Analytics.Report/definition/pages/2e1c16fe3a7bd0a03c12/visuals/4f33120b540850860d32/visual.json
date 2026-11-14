@@ -1,0 +1,93 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
+  "name": "4f33120b540850860d32",
+  "position": {
+    "x": 20,
+    "y": 20,
+    "z": 0,
+    "height": 80,
+    "width": 990
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Total_Trips"
+                }
+              },
+              "queryRef": "_Measures.Total_Trips",
+              "nativeQueryRef": "Total_Trips"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Total_Distance_Miles"
+                }
+              },
+              "queryRef": "_Measures.Total_Distance_Miles",
+              "nativeQueryRef": "Total_Distance_Miles"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Average_Distance_Miles"
+                }
+              },
+              "queryRef": "_Measures.Average_Distance_Miles",
+              "nativeQueryRef": "Average_Distance_Miles"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Average_Duration_Minutes"
+                }
+              },
+              "queryRef": "_Measures.Average_Duration_Minutes",
+              "nativeQueryRef": "Average_Duration_Minutes"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Average_Speed_MPH"
+                }
+              },
+              "queryRef": "_Measures.Average_Speed_MPH",
+              "nativeQueryRef": "Average_Speed_MPH"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

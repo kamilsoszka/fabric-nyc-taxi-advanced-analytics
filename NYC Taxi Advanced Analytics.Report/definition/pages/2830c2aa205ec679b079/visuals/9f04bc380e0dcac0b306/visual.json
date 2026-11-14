@@ -1,0 +1,93 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
+  "name": "9f04bc380e0dcac0b306",
+  "position": {
+    "x": 20,
+    "y": 20,
+    "z": 0,
+    "height": 80,
+    "width": 990
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Recorded_Revenue"
+                }
+              },
+              "queryRef": "_Measures.Recorded_Revenue",
+              "nativeQueryRef": "Recorded_Revenue"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Calculated_Revenue"
+                }
+              },
+              "queryRef": "_Measures.Calculated_Revenue",
+              "nativeQueryRef": "Calculated_Revenue"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Reconciliation_Difference"
+                }
+              },
+              "queryRef": "_Measures.Reconciliation_Difference",
+              "nativeQueryRef": "Reconciliation_Difference"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Exception_Trips"
+                }
+              },
+              "queryRef": "_Measures.Exception_Trips",
+              "nativeQueryRef": "Exception_Trips"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Exception_Rate"
+                }
+              },
+              "queryRef": "_Measures.Exception_Rate",
+              "nativeQueryRef": "Exception_Rate"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

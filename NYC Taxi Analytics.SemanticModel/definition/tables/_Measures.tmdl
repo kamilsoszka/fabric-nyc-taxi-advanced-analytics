@@ -1,0 +1,356 @@
+table _Measures
+	lineageTag: e1527615-edaa-4e9f-9403-ae7737b40b1a
+
+	measure Total_Trips = COUNTROWS ( vw_TripAnalytics )
+		formatString: #,0
+		displayFolder: 01_Core_Metrics
+		lineageTag: 68a9d8ff-568f-4c9f-862a-027b8cd24e57
+
+	measure Recorded_Revenue = SUM ( vw_TripAnalytics[RecordedTotalAmount] )
+		formatString: #,0.00
+		displayFolder: 01_Core_Metrics
+		lineageTag: a7bb19e6-4c37-4b12-9750-18efb0e6f145
+
+	measure Calculated_Revenue = SUM ( vw_TripAnalytics[CalculatedTotalAmount] )
+		formatString: #,0.00
+		displayFolder: 01_Core_Metrics
+		lineageTag: 6339f12c-4616-450b-ad36-2d36c15ec18d
+
+	measure Fare_Revenue = SUM ( vw_TripAnalytics[FareAmount] )
+		formatString: #,0.00
+		displayFolder: 01_Core_Metrics
+		lineageTag: 291efcfd-b74c-46aa-9a52-296b3bf4425c
+
+	measure Tip_Revenue = SUM ( vw_TripAnalytics[TipAmount] )
+		formatString: #,0.00
+		displayFolder: 01_Core_Metrics
+		lineageTag: 14720e7a-4ecd-4da6-b91b-1023c8f9fe5d
+
+	measure Average_Trip_Amount =
+			DIVIDE (
+			    SUM ( vw_TripAnalytics[RecordedTotalAmount] ),
+			    COUNTROWS ( vw_TripAnalytics )
+			)
+		formatString: #,0.00
+		displayFolder: 02_Operational_Metrics
+		lineageTag: b1e1773a-d6c8-4936-9b42-bfff9ef4d26e
+
+	measure Total_Distance_Miles = SUM ( vw_TripAnalytics[TripDistanceMiles] )
+		formatString: #,0.00
+		displayFolder: 02_Operational_Metrics
+		lineageTag: 82df0f30-e3f5-4c40-9ebf-acbdd08f030c
+
+	measure Average_Distance_Miles = AVERAGE ( vw_TripAnalytics[TripDistanceMiles] )
+		formatString: #,0.00
+		displayFolder: 02_Operational_Metrics
+		lineageTag: 5b704f2e-f386-445d-9c02-573423c2ee6a
+
+	measure Average_Duration_Minutes =
+			DIVIDE (
+			    AVERAGE ( vw_TripAnalytics[TripDurationSeconds] ),
+			    60
+			)
+		formatString: #,0.00
+		displayFolder: 02_Operational_Metrics
+		lineageTag: 309a6bb4-4ce0-4475-aae3-14866997934b
+
+	measure Average_Speed_MPH = AVERAGE ( vw_TripAnalytics[AverageSpeedMph] )
+		formatString: #,0.00
+		displayFolder: 02_Operational_Metrics
+		lineageTag: 61f6b898-a1cb-4a1e-94c6-901fe42812a2
+
+	measure Revenue_Per_Mile =
+			DIVIDE (
+			    SUM ( vw_TripAnalytics[RecordedTotalAmount] ),
+			    SUM ( vw_TripAnalytics[TripDistanceMiles] )
+			)
+		formatString: #,0.00
+		displayFolder: 02_Operational_Metrics
+		lineageTag: b209569b-e3d2-4343-82c9-d330333fb725
+
+	measure Total_Passengers = SUM ( vw_TripAnalytics[PassengerCount] )
+		formatString: #,0
+		displayFolder: 02_Operational_Metrics
+		lineageTag: 4caf10fa-e6cf-420d-ab54-ba8a440f74ae
+
+	measure Average_Passengers_Per_Trip =
+			DIVIDE (
+			    SUM ( vw_TripAnalytics[PassengerCount] ),
+			    COUNTROWS ( vw_TripAnalytics )
+			)
+		formatString: #,0.00
+		displayFolder: 02_Operational_Metrics
+		lineageTag: 82eb59d9-b412-4594-b333-20ea577bc094
+
+	measure Tip_Rate =
+			DIVIDE (
+			    SUM ( vw_TripAnalytics[TipAmount] ),
+			    SUM ( vw_TripAnalytics[FareAmount] )
+			)
+		formatString: 0.00%
+		displayFolder: 03_Financial_Metrics
+		lineageTag: dcff89ac-1376-4b2c-b7d5-3ae76a538732
+
+	measure Surcharge_Revenue = SUM ( vw_TripAnalytics[SurchargeAmount] )
+		formatString: #,0.00
+		displayFolder: 03_Financial_Metrics
+		lineageTag: 449abcc8-1e36-4379-b32c-a011cb9428f8
+
+	measure Tax_Revenue = SUM ( vw_TripAnalytics[TaxAmount] )
+		formatString: #,0.00
+		displayFolder: 03_Financial_Metrics
+		lineageTag: 30f990d5-111b-4d36-a0b0-b61c6750f374
+
+	measure Tolls_Revenue = SUM ( vw_TripAnalytics[TollsAmount] )
+		formatString: #,0.00
+		displayFolder: 03_Financial_Metrics
+		lineageTag: 52293d5d-7c8e-480b-828f-09ca9672e91c
+
+	measure Reconciliation_Difference = SUM ( vw_TripAnalytics[ReconciliationDifference] )
+		formatString: #,0.00
+		displayFolder: 04_Data_Quality
+		lineageTag: 6dd52cbb-1f1c-46b0-8e34-bdfcf86729e2
+
+	measure Reconciled_Trips =
+			CALCULATE (
+			    COUNTROWS ( vw_TripAnalytics ),
+			    vw_TripAnalytics[IsFinanciallyReconciled] = 1
+			)
+		formatString: #,0
+		displayFolder: 04_Data_Quality
+		lineageTag: ca3121e5-86ec-4d53-8208-208299fe9a03
+
+	measure Exception_Trips =
+			CALCULATE (
+			    COUNTROWS ( vw_TripAnalytics ),
+			    vw_TripAnalytics[IsFinanciallyReconciled] = 0
+			)
+		formatString: #,0
+		displayFolder: 04_Data_Quality
+		lineageTag: cf8498be-feae-4533-9203-d941e89e32a4
+
+	measure Reconciliation_Rate =
+			DIVIDE (
+			    CALCULATE (
+			        COUNTROWS ( vw_TripAnalytics ),
+			        vw_TripAnalytics[IsFinanciallyReconciled] = 1
+			    ),
+			    COUNTROWS ( vw_TripAnalytics )
+			)
+		formatString: 0.00%
+		displayFolder: 04_Data_Quality
+		lineageTag: 906086de-3900-4723-90ff-e1a53a565a2a
+
+	measure Exception_Rate =
+			DIVIDE (
+			    CALCULATE (
+			        COUNTROWS ( vw_TripAnalytics ),
+			        vw_TripAnalytics[IsFinanciallyReconciled] = 0
+			    ),
+			    COUNTROWS ( vw_TripAnalytics )
+			)
+		formatString: 0.00%
+		displayFolder: 04_Data_Quality
+		lineageTag: 4feaa2d4-233c-4513-b052-3b876fe942b8
+
+	measure Trips_MTD =
+			CALCULATE (
+			    COUNTROWS ( vw_TripAnalytics ),
+			    DATESMTD ( 'Date'[Date] )
+			)
+		formatString: #,0
+		displayFolder: 05_Time_Intelligence
+		lineageTag: 40f22b97-58a0-4a15-8bf8-ea3870ab82c0
+
+	measure Trips_YTD =
+			CALCULATE (
+			    COUNTROWS ( vw_TripAnalytics ),
+			    DATESYTD ( 'Date'[Date] )
+			)
+		formatString: #,0
+		displayFolder: 05_Time_Intelligence
+		lineageTag: dcade19a-1bd0-4c3a-9308-08af252fd8a3
+
+	measure Revenue_MTD =
+			CALCULATE (
+			    SUM ( vw_TripAnalytics[RecordedTotalAmount] ),
+			    DATESMTD ( 'Date'[Date] )
+			)
+		formatString: #,0.00
+		displayFolder: 05_Time_Intelligence
+		lineageTag: 57067aa5-4e13-4625-a7a2-d0242689efa6
+
+	measure Revenue_YTD =
+			CALCULATE (
+			    SUM ( vw_TripAnalytics[RecordedTotalAmount] ),
+			    DATESYTD ( 'Date'[Date] )
+			)
+		formatString: #,0.00
+		displayFolder: 05_Time_Intelligence
+		lineageTag: d4be9f5d-755c-4d31-a56a-b56bc141688e
+
+	measure Revenue_Previous_Month =
+			CALCULATE (
+			    SUM ( vw_TripAnalytics[RecordedTotalAmount] ),
+			    DATEADD ( 'Date'[Date], -1, MONTH )
+			)
+		formatString: #,0.00
+		displayFolder: 05_Time_Intelligence
+		lineageTag: 7b45bdb4-553b-4792-a847-ce8ea1afddd1
+
+	measure Revenue_MoM_Change =
+			VAR CurrentRevenue =
+			    SUM ( vw_TripAnalytics[RecordedTotalAmount] )
+			VAR PreviousMonthRevenue =
+			    CALCULATE (
+			        SUM ( vw_TripAnalytics[RecordedTotalAmount] ),
+			        DATEADD ( 'Date'[Date], -1, MONTH )
+			    )
+			RETURN
+			    CurrentRevenue - PreviousMonthRevenue
+		formatString: #,0.00
+		displayFolder: 05_Time_Intelligence
+		lineageTag: e7f02cd0-6f8b-459f-9959-e4f9e22b35d8
+
+	measure Revenue_MoM_Change_Percent =
+			VAR CurrentRevenue =
+			    SUM ( vw_TripAnalytics[RecordedTotalAmount] )
+			VAR PreviousMonthRevenue =
+			    CALCULATE (
+			        SUM ( vw_TripAnalytics[RecordedTotalAmount] ),
+			        DATEADD ( 'Date'[Date], -1, MONTH )
+			    )
+			RETURN
+			    DIVIDE (
+			        CurrentRevenue - PreviousMonthRevenue,
+			        PreviousMonthRevenue
+			    )
+		formatString: 0.00%
+		displayFolder: 05_Time_Intelligence
+		lineageTag: 1adb19be-3ec0-4eb8-8a6b-b886443063c4
+
+	measure Revenue_Previous_Year =
+			CALCULATE (
+			    SUM ( vw_TripAnalytics[RecordedTotalAmount] ),
+			    SAMEPERIODLASTYEAR ( 'Date'[Date] )
+			)
+		formatString: #,0.00
+		displayFolder: 05_Time_Intelligence
+		lineageTag: 44a13808-7c8f-43f7-aeba-88454a0134d4
+
+	measure Revenue_YoY_Change_Percent =
+			VAR CurrentRevenue =
+			    SUM ( vw_TripAnalytics[RecordedTotalAmount] )
+			VAR PreviousYearRevenue =
+			    CALCULATE (
+			        SUM ( vw_TripAnalytics[RecordedTotalAmount] ),
+			        SAMEPERIODLASTYEAR ( 'Date'[Date] )
+			    )
+			RETURN
+			    DIVIDE (
+			        CurrentRevenue - PreviousYearRevenue,
+			        PreviousYearRevenue
+			    )
+		formatString: 0.00%
+		displayFolder: 05_Time_Intelligence
+		lineageTag: 4bd6b92e-c312-4554-888d-438cd580d35b
+
+	measure Average_Temperature_F = AVERAGE ( Weather[AvgTemperatureFahrenheit] )
+		formatString: #,0.00
+		displayFolder: 06_Weather
+		lineageTag: e47069b3-ea5b-46ac-b47e-35c6c90fcf8b
+
+	measure Average_Precipitation_Inches = AVERAGE ( Weather[PrecipitationInches] )
+		formatString: #,0.00
+		displayFolder: 06_Weather
+		lineageTag: 50b5496b-a927-4b24-a44b-6e27e13f1820
+
+	measure Trips_By_Dropoff_Geography =
+			CALCULATE (
+			    COUNTROWS ( vw_TripAnalytics ),
+			    CROSSFILTER (
+			        vw_TripAnalytics[PickupGeographyID],
+			        Geography[GeographyID],
+			        NONE
+			    ),
+			    USERELATIONSHIP (
+			        vw_TripAnalytics[DropoffGeographyID],
+			        Geography[GeographyID]
+			    )
+			)
+		formatString: #,0
+		displayFolder: 07_Alternative_Relationships
+		lineageTag: 80c91bdd-4501-4049-bce5-e9b18e0e385a
+
+	measure Revenue_By_Dropoff_Geography =
+			CALCULATE (
+			    SUM ( vw_TripAnalytics[RecordedTotalAmount] ),
+			    CROSSFILTER (
+			        vw_TripAnalytics[PickupGeographyID],
+			        Geography[GeographyID],
+			        NONE
+			    ),
+			    USERELATIONSHIP (
+			        vw_TripAnalytics[DropoffGeographyID],
+			        Geography[GeographyID]
+			    )
+			)
+		formatString: #,0.00
+		displayFolder: 07_Alternative_Relationships
+		lineageTag: c4dcb27e-bb97-47fb-a968-bd286ce50209
+
+	measure Trips_By_Dropoff_Time =
+			CALCULATE (
+			    COUNTROWS ( vw_TripAnalytics ),
+			    CROSSFILTER (
+			        vw_TripAnalytics[PickupTimeID],
+			        'Time'[TimeID],
+			        NONE
+			    ),
+			    USERELATIONSHIP (
+			        vw_TripAnalytics[DropoffTimeID],
+			        'Time'[TimeID]
+			    )
+			)
+		formatString: #,0
+		displayFolder: 07_Alternative_Relationships
+		lineageTag: 8bb65ab6-1615-4e0f-88dc-ae3d468ffd4a
+
+	measure Payment_Type_Rank_By_Revenue =
+			RANKX (
+			    ALLSELECTED ( vw_TripAnalytics[PaymentType] ),
+			    CALCULATE (
+			        SUM ( vw_TripAnalytics[RecordedTotalAmount] )
+			    ),
+			    ,
+			    DESC,
+			    DENSE
+			)
+		formatString: #,0
+		displayFolder: 08_Rankings
+		lineageTag: 68f67a85-01ba-46ea-b0c3-a2d78c90a28e
+
+	measure Pickup_Geography_Rank_By_Revenue =
+			RANKX (
+			    ALLSELECTED ( Geography[GeographyID] ),
+			    CALCULATE (
+			        SUM ( vw_TripAnalytics[RecordedTotalAmount] )
+			    ),
+			    ,
+			    DESC,
+			    DENSE
+			)
+		formatString: #,0
+		displayFolder: 08_Rankings
+		lineageTag: 2f7cc1da-a306-4074-a363-a7f03a708e95
+
+	column Value
+		isHidden
+		lineageTag: de34f7b8-9e61-45b2-83c9-ba96334059f4
+		isNameInferred
+		sourceColumn: [Value]
+
+	partition _Measures = calculated
+		mode: import
+		source = { 0 }
+

@@ -1,0 +1,79 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
+  "name": "c0c4c1331e6c796385bb",
+  "position": {
+    "x": 20,
+    "y": 20,
+    "z": 0,
+    "height": 80,
+    "width": 990
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Recorded_Revenue"
+                }
+              },
+              "queryRef": "_Measures.Recorded_Revenue",
+              "nativeQueryRef": "Recorded_Revenue"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Total_Trips"
+                }
+              },
+              "queryRef": "_Measures.Total_Trips",
+              "nativeQueryRef": "Total_Trips"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Average_Trip_Amount"
+                }
+              },
+              "queryRef": "_Measures.Average_Trip_Amount",
+              "nativeQueryRef": "Average_Trip_Amount"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Average_Duration_Minutes"
+                }
+              },
+              "queryRef": "_Measures.Average_Duration_Minutes",
+              "nativeQueryRef": "Average_Duration_Minutes"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

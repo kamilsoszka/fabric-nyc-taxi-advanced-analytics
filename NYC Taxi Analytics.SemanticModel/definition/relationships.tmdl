@@ -1,0 +1,34 @@
+relationship 1fbc3e41-75b1-65ab-f54d-9ebbc98422e9
+	fromColumn: vw_TripAnalytics.DateID
+	toColumn: Date.DateID
+
+relationship a7e32e80-fd22-23ef-c893-075a04af43f0
+	fromColumn: vw_TripAnalytics.MedallionID
+	toColumn: Medallion.MedallionID
+
+relationship ccfe5cbb-b321-90e1-9432-5f57733ba4b5
+	fromColumn: vw_TripAnalytics.HackneyLicenseID
+	toColumn: HackneyLicense.HackneyLicenseID
+
+relationship eb442001-85d4-b5d3-abf2-f4774fe361fd
+	fromColumn: vw_TripAnalytics.PickupTimeID
+	toColumn: Time.TimeID
+
+relationship d0a3a528-d880-e8b6-e699-d3816bc42f56
+	fromColumn: vw_TripAnalytics.PickupGeographyID
+	toColumn: Geography.GeographyID
+
+relationship 8c26a460-85bc-d686-999d-6575adb01d14
+	fromColumn: Weather.DateID
+	toColumn: Date.DateID
+
+relationship 51bc5d74-e38f-e985-f8ab-9d0d57edb2ed
+	isActive: false
+	fromColumn: vw_TripAnalytics.DropoffTimeID
+	toColumn: Time.TimeID
+
+relationship d29455f5-6a67-994b-a30c-5452f168588c
+	isActive: false
+	fromColumn: vw_TripAnalytics.DropoffGeographyID
+	toColumn: Geography.GeographyID
+
